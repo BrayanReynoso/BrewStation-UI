@@ -1,4 +1,5 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/widgets/location.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,13 +14,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: AppColors.backgroundLight,
-      body: Center(
-        child: Text('Home Screen',
-          style: TextStyle(
-            fontSize: 24,
-            color: AppColors.textSecondary,
-            fontFamily: "sora",  fontWeight: FontWeight.w900,
-          ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            LocationWidget(
+              location: 'Cuernava, Morelos',
+            ),
+          ],
         ),
       ),
     );
