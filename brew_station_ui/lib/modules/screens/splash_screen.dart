@@ -1,5 +1,6 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:brew_station_ui/modules/screens/home/home_screen.dart';
+import 'package:brew_station_ui/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 // ignore: depend_on_referenced_packages
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+          pageBuilder: (context, animation, secondaryAnimation) => const NavigationBarWidget (),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             const begin = Offset(0.0, 1.0); // La animación comienza desde abajo
             const end = Offset.zero;
