@@ -2,11 +2,10 @@ import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class LocationWidget extends StatelessWidget {
-  final String location; // Pasaremos la ubicación como parámetro.
-
+  final String? location;
   const LocationWidget({
     super.key,
-    required this.location,
+    this.location,
   });
 
   @override
@@ -38,12 +37,14 @@ class LocationWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 4),
-          Row(
+           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                location,
+                location != null && location!.isNotEmpty
+                    ? location! // Si location no es nulo ni vacío, mostramos la ubicación.
+                    : 'No disponible', // Si no tiene valor, mostramos el mensaje "No disponible".
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black87,
@@ -51,11 +52,12 @@ class LocationWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              const Icon(
-                Icons.arrow_drop_down,
-                size: 24,
-                color: Colors.black54,
-              ),
+              if (location != null && location!.isNotEmpty) // Mostrar solo si la ubicación es válida.
+                const Icon(
+                  Icons.arrow_drop_down,
+                  size: 24,
+                  color: Colors.black54,
+                ),
             ],
           ),
         ],
