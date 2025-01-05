@@ -1,4 +1,5 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/modules/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 // ignore: depend_on_referenced_packages
@@ -6,12 +7,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen>
-  with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -37,13 +39,27 @@ class _SplashScreenState extends State<SplashScreen>
         curve: Curves.easeOutBack,
       ),
     );
-    _controller.forward();    
-    
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/home');
-    });
+    _controller.forward();
 
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => const HomeScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(0.0, 1.0); // La animación comienza desde abajo
+            const end = Offset.zero;
+            const curve = Curves.easeInOut;
+            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetAnimation = animation.drive(tween);
+
+            return SlideTransition(position: offsetAnimation, child: child);
+          },
+        ),
+      );
+    });
   }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -124,8 +140,7 @@ class _SplashScreenState extends State<SplashScreen>
                         'assets/images/svgviewer-output.svg',
                         width: 300,
                         height: 300,
-                        fit: BoxFit
-                            .contain,
+                        fit: BoxFit.contain,
                       ),
                     ),
                     const SizedBox(height: 40),
