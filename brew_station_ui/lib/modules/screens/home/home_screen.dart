@@ -159,6 +159,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPress: () {
                             print('Ver más del Producto ${product.title}');
                           },
+                          onLikePress: () => {
+                            print('Me gusta el producto ${product.title}')
+                          },
                         ),
                       );
                     },
