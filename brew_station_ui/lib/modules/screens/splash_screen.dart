@@ -1,6 +1,6 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:brew_station_ui/modules/screens/home/home_screen.dart';
-import 'package:brew_station_ui/widgets/navigation_bar.dart';
+import 'package:brew_station_ui/widgets/home/navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 // ignore: depend_on_referenced_packages
