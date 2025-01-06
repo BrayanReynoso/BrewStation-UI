@@ -43,20 +43,20 @@ class LocationWidget extends StatelessWidget {
             children: [
               Text(
                 location != null && location!.isNotEmpty
-                    ? location! // Si location no es nulo ni vacío, mostramos la ubicación.
-                    : 'No disponible', // Si no tiene valor, mostramos el mensaje "No disponible".
+                    ? location!
+                    : 'No disponible',
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Colors.black87,
+                  color: AppColors.textPrimaryDark,
                   fontFamily: 'Sora',
                 ),
               ),
               const SizedBox(width: 8),
-              if (location != null && location!.isNotEmpty) // Mostrar solo si la ubicación es válida.
+              if (location != null && location!.isNotEmpty)
                 const Icon(
                   Icons.arrow_drop_down,
                   size: 24,
-                  color: Colors.black54,
+                  color: AppColors.textPrimaryDark,
                 ),
             ],
           ),
