@@ -27,14 +27,78 @@ class _FilterState extends State<Filter> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Filtros'),
-                content: const Text('filtros.'),
+                backgroundColor: AppColors.backgroundSoft,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                title: const Text(
+                  'Filtrar por:',
+                  style: TextStyle(
+                    color: AppColors.textPrimaryDark,
+                    fontWeight: FontWeight.bold,
+                      fontFamily: "sora"
+                  ),
+                ),
+                content: const Text(
+                  'Filtros disponibles aquí.',
+                  style: TextStyle(
+                    color: AppColors.textSecondary,
+                      fontFamily: "sora"
+                  ),
+                ),
                 actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Cerrar'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          side: const BorderSide(color: AppColors.textSecondary), 
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.cancel, color: AppColors.textSecondary),
+                            SizedBox(width: 6),
+                            Text(
+                              'Cancelar',
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontWeight: FontWeight.bold,
+                                  fontFamily: "sora"
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      TextButton(
+                        onPressed: () {
+                          // Acción de aplicar
+                          Navigator.of(context).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          backgroundColor: AppColors.primaryAccent,
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.check, color: AppColors.white),
+                            SizedBox(width: 6),
+                            Text(
+                              'Aplicar',
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "sora"
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               );
