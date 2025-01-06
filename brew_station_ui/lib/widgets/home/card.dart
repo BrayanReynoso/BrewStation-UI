@@ -9,13 +9,13 @@ class CardProduct extends StatelessWidget {
   final VoidCallback onPress;
 
   const CardProduct({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.description,
     required this.price,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

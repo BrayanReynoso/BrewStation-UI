@@ -7,13 +7,14 @@ class FilterButtons extends StatefulWidget {
   final String selectedFilter;
 
   const FilterButtons({
-    Key? key,
+    super.key,
     required this.filters,
     required this.onFilterSelected,
     required this.selectedFilter, // Recibimos el filtro seleccionado
-  }) : super(key: key);
+  });
 
   @override
+  // ignore: library_private_types_in_public_api
   _FilterButtonsState createState() => _FilterButtonsState();
 }
 
