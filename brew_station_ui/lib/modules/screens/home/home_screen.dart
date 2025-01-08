@@ -79,6 +79,41 @@ class _HomeScreenState extends State<HomeScreen> {
       price: '35',
       category: 'Cappuccino',
     ),
+     Product(
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
+      title: 'Café Frappé Moca',
+      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
+      price: '35',
+      category: 'Cappuccino',
+    ),
+     Product(
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
+      title: 'Café Frappé Moca',
+      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
+      price: '35',
+      category: 'Cappuccino',
+    ),
+     Product(
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
+      title: 'Café Frappé Moca',
+      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
+      price: '35',
+      category: 'Cappuccino',
+    ),
+     Product(
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
+      title: 'Café Frappé sin azucar',
+      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
+      price: '35',
+      category: 'Cappuccino',
+    ),
+     Product(
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
+      title: 'Café Frappé Moca',
+      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
+      price: '35',
+      category: 'Cappuccino',
+    ),
   ];
 
   List<Product> get filteredProducts {
