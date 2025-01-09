@@ -1,4 +1,4 @@
-import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,17 +10,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: AppColors.backgroundLight,
-        body: Center(
-          child: Text(
-          "¡Bienvenido a Brew Station!",
-          style: TextStyle(fontFamily: 'Sora', fontWeight: FontWeight.bold, fontSize: 24),
-        ),
-        ),
-      ),
+      initialRoute: "/",
+      routes: {
+        "/": (context) => const SplashScreen(),
+      },
     );
   }
 }
