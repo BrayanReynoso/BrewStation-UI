@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   String selectedFilter = 'Todos';
+  String searchQuery = ''; // Variable para almacenar la búsqueda
 
   final List<Product> products = [
     Product(
@@ -79,35 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       price: '35',
       category: 'Cappuccino',
     ),
-     Product(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
-      title: 'Café Frappé Moca',
-      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
-      price: '35',
-      category: 'Cappuccino',
-    ),
-     Product(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
-      title: 'Café Frappé Moca',
-      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
-      price: '35',
-      category: 'Cappuccino',
-    ),
-     Product(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
-      title: 'Café Frappé Moca',
-      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
-      price: '35',
-      category: 'Cappuccino',
-    ),
-     Product(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
-      title: 'Café Frappé sin azucar',
-      description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
-      price: '35',
-      category: 'Cappuccino',
-    ),
-     Product(
+    Product(
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtDqHvJ2vSkA5fP277IkzAWRpY5LKdrpZrh4-LiNscQUQiksbAd0T-MoVKlVUsXwBJ9Sw&usqp=CAU',
       title: 'Café Frappé Moca',
       description: 'Café helado batido con hielo y crema, refrescante y delicioso.',
@@ -117,10 +90,19 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   List<Product> get filteredProducts {
-    if (selectedFilter == 'Todos') {
-      return products;
+    List<Product> result = products;
+
+    // Filtrar por categoría
+    if (selectedFilter != 'Todos') {
+      result = result.where((product) => product.category == selectedFilter).toList();
     }
-    return products.where((product) => product.category == selectedFilter).toList();
+
+    // Filtrar por búsqueda
+    if (searchQuery.isNotEmpty) {
+      result = result.where((product) => product.title.toLowerCase().contains(searchQuery.toLowerCase())).toList();
+    }
+
+    return result;
   }
 
   void onFilterSelected(String filter) {
@@ -128,6 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
       selectedFilter = filter;
     });
     print('Filtro seleccionado: $filter');
+  }
+
+  void onSearch(String query) {
+    setState(() {
+      searchQuery = query;
+    });
+    print('Buscando: $query');
   }
 
   @override
@@ -154,9 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Expanded(
                       child: SearchBarWidget(
-                        onSearch: (query) {
-                          print('Searching for: $query');
-                        },
+                        onSearch: onSearch,
                       ),
                     ),
                     const Padding(
@@ -175,35 +162,42 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 5),
                 Expanded(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 2,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemCount: filteredProducts.length,
-                    itemBuilder: (context, index) {
-                      final product = filteredProducts[index];
-                      return Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: CardProduct(
-                          imageUrl: product.imageUrl,
-                          title: product.title,
-                          description: product.description,
-                          price: product.price,
-                          onPress: () {
-                            print('Ver más del Producto ${product.title}');
-                          },
-                          onLikePress: () => {
-                            print('Me gusta el producto ${product.title}')
+                  child: filteredProducts.isEmpty
+                      ? const Center(
+                          child: Text(
+                            'Sin resultados',
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      : GridView.builder(
+                          shrinkWrap: true,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 2,
+                            childAspectRatio: 0.75,
+                          ),
+                          itemCount: filteredProducts.length,
+                          itemBuilder: (context, index) {
+                            final product = filteredProducts[index];
+                            return Padding(
+                              padding: const EdgeInsets.all(3.0),
+                              child: CardProduct(
+                                imageUrl: product.imageUrl,
+                                title: product.title,
+                                description: product.description,
+                                price: product.price,
+                                onPress: () {
+                                  print('Ver más del Producto ${product.title}');
+                                },
+                                onLikePress: () => {
+                                  print('Me gusta el producto ${product.title}')
+                                },
+                              ),
+                            );
                           },
                         ),
-                      );
-                    },
-                  ),
                 ),
               ],
             ),
