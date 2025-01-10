@@ -4,7 +4,7 @@ import 'package:brew_station_ui/widgets/home/filter_buttons_body.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brew_station_ui/core/constants/colors.dart';
-import 'package:brew_station_ui/widgets/SearchField.dart';
+import 'package:brew_station_ui/widgets/home/SearchField.dart';
 import 'package:brew_station_ui/widgets/home/filter.dart';
 import 'package:brew_station_ui/widgets/home/location.dart';
 import 'package:brew_station_ui/widgets/home/offers_carousel.dart';

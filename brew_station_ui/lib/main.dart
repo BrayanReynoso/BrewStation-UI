@@ -1,4 +1,4 @@
-import 'package:brew_station_ui/modules/screens/splash_screen.dart';
+import 'package:brew_station_ui/modules/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
