@@ -1,8 +1,8 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:brew_station_ui/modules/cart/cart.dart';
 import 'package:brew_station_ui/modules/likes/likes.dart';
+import 'package:brew_station_ui/modules/home/home_screen.dart';
 import 'package:brew_station_ui/modules/profile/profile.dart';
-import 'package:brew_station_ui/modules/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationBarWidget extends StatefulWidget {
