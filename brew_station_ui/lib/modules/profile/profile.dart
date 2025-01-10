@@ -12,6 +12,7 @@ class ProfileScreen extends StatelessWidget {
     // Primer grupo de configuraciones
     [
       SettingsItem(
+      iconColor: AppColors.accentColor,
         icon: Icons.location_on,
         title: 'Dirección de Entrega',
         onTap: () {
@@ -26,6 +27,7 @@ class ProfileScreen extends StatelessWidget {
         },
       ),
       SettingsItem(
+        iconColor: AppColors.textSecondary,
         icon: Icons.credit_card,
         title: 'Métodos de Pago',
         onTap: () {
