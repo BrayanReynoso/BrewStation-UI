@@ -1,27 +1,33 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/widgets/profile/profile_header.dart';
+import 'package:brew_station_ui/widgets/profile/settings_section.dart';
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
+
+class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
-  @override
   Widget build(BuildContext context) {
-   return const Scaffold(
-      backgroundColor: AppColors.backgroundLight,
-      body: Center(
-        child: Text('Profile Screen',
-          style: TextStyle(
-            fontSize: 24,
-            color: AppColors.textSecondary,
-            fontFamily: "sora",  fontWeight: FontWeight.w900,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Perfil'),
+        backgroundColor: AppColors.primaryAccent,
+        elevation: 0,
+      ),
+      body: const SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ProfileHeader(),
+              SizedBox(height: 32),
+              SettingsSection(),
+            ],
           ),
         ),
       ),
     );
   }
-  }
+}
