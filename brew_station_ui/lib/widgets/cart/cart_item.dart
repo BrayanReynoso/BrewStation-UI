@@ -15,64 +15,73 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.asset(
-        item['image'],
-        width: 50,
-        height: 50,
-        fit: BoxFit.cover,
+    return Card(
+      elevation: 5, // Sombra
+      shadowColor: AppColors.textSecondary.withOpacity(0.1), // Color de la sombra
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10), // Bordes redondeados
       ),
-      title: Text(
-        item['name'],
-        style: const TextStyle(
-          fontFamily: "Sora",
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: AppColors.textPrimaryDark,
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(16),
+        leading: Image.asset(
+          item['image'],
+          width: 50,
+          height: 50,
+          fit: BoxFit.cover,
         ),
-      ),
-      subtitle: Text(
-        "Precio: \$${item['price']}",
-        style: const TextStyle(
-          fontFamily: "Sora",
-          fontSize: 14,
-          color: AppColors.textSecondary,
-        ),
-      ),
-      trailing: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.remove_circle),
-            color: AppColors.warningColor,
-            onPressed: () {
-              if (item['quantity'] > 1) {
-                onQuantityChanged(item['quantity'] - 1);
-              }
-            },
+        title: Text(
+          item['name'],
+          style: const TextStyle(
+            fontFamily: "Sora",
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: AppColors.textPrimaryDark,
           ),
-          Text(
-            "${item['quantity']}",
-            style: const TextStyle(
-              fontFamily: "Sora",
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimaryDark,
+        ),
+        subtitle: Text(
+          "Precio: \$${item['price']}",
+          style: const TextStyle(
+            fontFamily: "Sora",
+            fontSize: 14,
+            color: AppColors.textSecondary,
+          ),
+        ),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.remove_circle),
+              color: AppColors.warningColor,
+              onPressed: () {
+                if (item['quantity'] > 1) {
+                  onQuantityChanged(item['quantity'] - 1);
+                }
+              },
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            color: AppColors.accentColor,
-            onPressed: () {
-              onQuantityChanged(item['quantity'] + 1);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            color: AppColors.dangerColor,
-            onPressed: onRemove,
-          ),
-        ],
+            Text(
+              "${item['quantity']}",
+              style: const TextStyle(
+                fontFamily: "Sora",
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textPrimaryDark,
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.add_circle),
+              color: AppColors.accentColor,
+              onPressed: () {
+                onQuantityChanged(item['quantity'] + 1);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.delete),
+              color: AppColors.dangerColor,
+              onPressed: onRemove,
+            ),
+          ],
+        ),
       ),
     );
   }

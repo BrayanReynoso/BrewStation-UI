@@ -20,7 +20,7 @@ class CartSummaryWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.backgroundSoft,
+        color: AppColors.backgroundLight,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         boxShadow: [
           BoxShadow(
@@ -39,9 +39,9 @@ class CartSummaryWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Subtotal",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: "Sora",
                     fontSize: 16,
                     color: AppColors.textSecondary,
@@ -63,9 +63,9 @@ class CartSummaryWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Delivery Fee",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: "Sora",
                     fontSize: 16,
                     color: AppColors.textSecondary,
@@ -88,9 +88,9 @@ class CartSummaryWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Total",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: "Sora",
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
