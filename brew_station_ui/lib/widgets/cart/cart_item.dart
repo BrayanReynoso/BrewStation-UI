@@ -1,4 +1,3 @@
-// cart_item_widget.dart
 import 'package:flutter/material.dart';
 import 'package:brew_station_ui/core/constants/colors.dart';
 
@@ -22,8 +21,8 @@ class CartItemWidget extends StatelessWidget {
       background: Container(
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
-        color: Colors.red,
-        child: const Icon(Icons.delete, color: Colors.white),
+        color: AppColors.dangerColor,
+        child: const Icon(Icons.delete, color: AppColors.white),
       ),
       onDismissed: (_) => onRemove(),
       child: Card(
@@ -56,16 +55,19 @@ class CartItemWidget extends StatelessWidget {
                     Text(
                       item['name'],
                       style: const TextStyle(
+                        fontFamily: "Sora",
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimaryDark,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       item['description'] ?? '',
-                      style: TextStyle(
+                      style: const TextStyle(
+                        fontFamily: "Sora",
                         fontSize: 14,
-                        color: Colors.grey[600],
+                        color: AppColors.textSecondary,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -74,10 +76,11 @@ class CartItemWidget extends StatelessWidget {
                       children: [
                         Text(
                           '\$${(item['price'] * item['quantity']).toStringAsFixed(2)}',
-                          style: TextStyle(
+                          style: const TextStyle(
+                            fontFamily: "Sora",
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor,
+                            color: AppColors.primaryAccent,
                           ),
                         ),
                         Row(
@@ -97,14 +100,16 @@ class CartItemWidget extends StatelessWidget {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.grey[100],
+                                color: AppColors.backgroundSecondary,
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
                                 '${item['quantity']}',
                                 style: const TextStyle(
+                                  fontFamily: "Sora",
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimaryDark,
                                 ),
                               ),
                             ),
@@ -146,13 +151,13 @@ class _QuantityButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          color: AppColors.primaryAccent.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(
           icon,
           size: 20,
-          color: Theme.of(context).primaryColor,
+          color: AppColors.primaryAccent,
         ),
       ),
     );

@@ -1,6 +1,6 @@
-// cart_summary_widget.dart
-import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:brew_station_ui/core/constants/colors.dart';
+
 class CartSummaryWidget extends StatelessWidget {
   final double subtotal;
   final double deliveryFee;
@@ -71,7 +71,7 @@ class CartSummaryWidget extends StatelessWidget {
                 onPressed: onCheckout,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Theme.of(context).primaryColor,
+                  backgroundColor: AppColors.primaryAccent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -79,9 +79,10 @@ class CartSummaryWidget extends StatelessWidget {
                 child: const Text(
                   'Pagar',
                   style: TextStyle(
+                    fontFamily: "Sora",
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 ),
               ),
@@ -112,17 +113,19 @@ class _SummaryRow extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
+            fontFamily: "Sora",
             fontSize: isTotal ? 18 : 16,
             fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-            color: isTotal ? Colors.black : Colors.grey[600],
+            color: isTotal ? AppColors.textPrimaryDark : AppColors.textSecondary,
           ),
         ),
         Text(
           value,
           style: TextStyle(
+            fontFamily: "Sora",
             fontSize: isTotal ? 18 : 16,
             fontWeight: isTotal ? FontWeight.bold : FontWeight.normal,
-            color: isTotal ? Theme.of(context).primaryColor : Colors.black,
+            color: isTotal ? AppColors.primaryAccent : AppColors.textPrimaryDark,
           ),
         ),
       ],
