@@ -18,7 +18,7 @@ class _NavigationBarWidgetState extends State<NavigationBarWidget> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const LikesScreen(),
-    const CartSceen(),
+    CartScreen(),
     const ProfileScreen()
   ];
 
