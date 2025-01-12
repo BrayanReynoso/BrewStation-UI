@@ -1,26 +1,70 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/widgets/cart/cart_item.dart';
+import 'package:brew_station_ui/widgets/cart/cart_summary.dart';
 import 'package:flutter/material.dart';
 
-class CartSceen extends StatefulWidget {
-  const CartSceen({super.key});
+class CartSceen extends StatelessWidget {
+  final List<Map<String, dynamic>> cartItems = [
+    {
+      "id": 1,
+      "name": "Café Espresso",
+      "price": 50.0,
+      "quantity": 2,
+      "image": "assets/images/coffe.webp",
+    },
+    {
+      "id": 2,
+      "name": "Latte Macchiato",
+      "price": 70.0,
+      "quantity": 1,
+       "image": "assets/images/coffe.webp",
+    },
+  ];
 
-  @override
-  State<CartSceen> createState() => _CartSceenState();
-}
+  final double deliveryFee = 20.0;
 
-class _CartSceenState extends State<CartSceen> {
+  CartSceen({super.key});
+
   @override
   Widget build(BuildContext context) {
-   return const Scaffold(
-      backgroundColor: AppColors.backgroundLight,
-      body: Center(
-        child: Text('Cart Screen',
-          style: TextStyle(
-            fontSize: 24,
-            color: AppColors.textSecondary,
-            fontFamily: "sora",  fontWeight: FontWeight.w900,
+    double subtotal = cartItems.fold(
+      0,
+      (sum, item) => sum + (item['price'] * item['quantity']),
+    );
+    double total = subtotal + deliveryFee;
+
+    return Scaffold(
+      
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                return CartItemWidget(
+                  item: cartItems[index],
+                  onQuantityChanged: (newQuantity) {
+                    // Lógica para manejar el cambio de cantidad
+                    print("Updated item ${cartItems[index]['name']} to $newQuantity");
+                  },
+                  onRemove: () {
+                    // Lógica para eliminar un artículo del carrito
+                    print("Removed item ${cartItems[index]['name']}");
+                  },
+                );
+              },
+            ),
           ),
-        ),
+          CartSummaryWidget(
+            subtotal: subtotal,
+            deliveryFee: deliveryFee,
+            total: total,
+            onCheckout: () {
+              // Lógica para proceder al checkout
+              print("Proceeding to checkout with total: $total");
+            },
+          ),
+        ],
       ),
     );
   }
