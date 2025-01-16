@@ -1,10 +1,9 @@
 # BrewStation ☕
 
+> **⚠️ Estado del proyecto:** *En desarrollo*  
+> Este proyecto está en progreso y aún no representa una versión final.  
+
 BrewStation es una aplicación móvil en desarrollo, diseñada para revolucionar la forma en que compras tu café. Conectamos a los amantes del café con sus bebidas y productos favoritos de cafetería, permitiendo una experiencia de compra fluida y personalizada.
-
-## Estado del Proyecto 🚧
-
-**En Desarrollo Activo**: Esta aplicación se encuentra actualmente en fase de construcción. Las funcionalidades se están implementando progresivamente.
 
 ## Características Planificadas 🌟
 
