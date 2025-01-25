@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:brew_station_ui/widgets/home/card.dart';
 import 'package:brew_station_ui/widgets/home/filter_buttons_body.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:brew_station_ui/widgets/home/SearchField.dart';
 import 'package:brew_station_ui/widgets/home/filter.dart';
 import 'package:brew_station_ui/widgets/home/location.dart';
 import 'package:brew_station_ui/widgets/home/offers_carousel.dart';
+import 'package:brew_station_ui/services/favorites_manager.dart'; // Importamos la clase para manejar los favoritos
 
 class Product {
   final String imageUrl;
@@ -89,6 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
     ),
   ];
 
+  void onLikePress(Product product) {
+    setState(() {
+      FavoritesManager.addToFavorites(product);
+    });
+    print('Me gusta el producto ${product.title}');
+  }
+
+  // Método para filtrar productos
   List<Product> get filteredProducts {
     List<Product> result = products;
 
@@ -103,20 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     return result;
-  }
-
-  void onFilterSelected(String filter) {
-    setState(() {
-      selectedFilter = filter;
-    });
-    print('Filtro seleccionado: $filter');
-  }
-
-  void onSearch(String query) {
-    setState(() {
-      searchQuery = query;
-    });
-    print('Buscando: $query');
   }
 
   @override
@@ -143,7 +137,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Expanded(
                       child: SearchBarWidget(
-                        onSearch: onSearch,
+                        onSearch: (query) {
+                          setState(() {
+                            searchQuery = query;
+                          });
+                        },
                       ),
                     ),
                     const Padding(
@@ -158,7 +156,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 FilterButtons(
                   filters: filterOptions,
                   selectedFilter: selectedFilter,
-                  onFilterSelected: onFilterSelected,
+                  onFilterSelected: (filter) {
+                    setState(() {
+                      selectedFilter = filter;
+                    });
+                  },
                 ),
                 const SizedBox(height: 5),
                 Expanded(
@@ -191,9 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onPress: () {
                                   print('Ver más del Producto ${product.title}');
                                 },
-                                onLikePress: () => {
-                                  print('Me gusta el producto ${product.title}')
-                                },
+                                onLikePress: () => onLikePress(product),
                               ),
                             );
                           },
