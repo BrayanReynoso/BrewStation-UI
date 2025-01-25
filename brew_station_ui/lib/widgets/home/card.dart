@@ -1,6 +1,7 @@
 import 'package:brew_station_ui/core/constants/colors.dart';
+import 'package:brew_station_ui/modules/home/home_screen.dart';
+import 'package:brew_station_ui/services/favorites_manager.dart';
 import 'package:flutter/material.dart';
-
 class CardProduct extends StatefulWidget {
   final String imageUrl;
   final String title;
@@ -24,7 +25,20 @@ class CardProduct extends StatefulWidget {
 }
 
 class _CardProductState extends State<CardProduct> {
-  bool _isLiked = false;
+  late bool _isLiked;
+
+  @override
+  void initState() {
+    super.initState();
+    // Verificar si el producto está en favoritos
+    _isLiked = FavoritesManager.isFavorite(Product(
+      imageUrl: widget.imageUrl,
+      title: widget.title,
+      description: widget.description,
+      price: widget.price,
+      category: '', // Este campo es requerido, pero puedes dejarlo vacío
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,9 +76,30 @@ class _CardProductState extends State<CardProduct> {
                   ),
                   onPressed: () {
                     setState(() {
-                      _isLiked = !_isLiked;
+                      if (_isLiked) {
+                        // Eliminar de favoritos
+                        FavoritesManager.removeFromFavorites(Product(
+                          imageUrl: widget.imageUrl,
+                          title: widget.title,
+                          description: widget.description,
+                          price: widget.price,
+                          category: '', // Este campo es requerido
+                        ));
+                        print('Se removió el producto ${widget.title} de favoritos');
+                      } else {
+                        // Agregar a favoritos
+                        FavoritesManager.addToFavorites(Product(
+                          imageUrl: widget.imageUrl,
+                          title: widget.title,
+                          description: widget.description,
+                          price: widget.price,
+                          category: '', // Este campo es requerido
+                        ));
+                        print('Se agregó el producto ${widget.title} a favoritos');
+                      }
+                      _isLiked = !_isLiked; // Cambiar el estado visual del corazón
                     });
-                    widget.onLikePress();
+                    widget.onLikePress(); // Llamar la función proporcionada para manejar el evento en el HomeScreen
                   },
                 ),
               ),

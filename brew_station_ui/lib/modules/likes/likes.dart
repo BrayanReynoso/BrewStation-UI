@@ -3,7 +3,6 @@ import 'package:brew_station_ui/core/constants/colors.dart';
 import 'package:brew_station_ui/modules/home/home_screen.dart'; // Importa la clase Product y FavoritesManager
 import 'package:brew_station_ui/services/favorites_manager.dart';  // Importamos el manager de favoritos
 import 'package:brew_station_ui/widgets/home/card.dart'; // Importa el widget para mostrar los productos favoritos
-
 class LikesScreen extends StatefulWidget {
   const LikesScreen({super.key});
 
@@ -12,11 +11,18 @@ class LikesScreen extends StatefulWidget {
 }
 
 class _LikesScreenState extends State<LikesScreen> {
+  // Lista de productos favoritos
+  late List<Product> favoriteProducts;
+
+  @override
+  void initState() {
+    super.initState();
+    // Inicializamos la lista de favoritos cuando se carga la pantalla
+    favoriteProducts = FavoritesManager.getFavorites();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Obtiene la lista de productos favoritos
-    List<Product> favoriteProducts = FavoritesManager.getFavorites();
-
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       appBar: AppBar(
@@ -65,7 +71,13 @@ class _LikesScreenState extends State<LikesScreen> {
                         print('Ver más del Producto ${product.title}');
                       },
                       onLikePress: () {
-                        print('Me gusta el producto ${product.title}');
+                        // Eliminar de favoritos
+                        setState(() {
+                          FavoritesManager.removeFromFavorites(product);
+                          // Actualizar la lista de favoritos
+                          favoriteProducts = FavoritesManager.getFavorites();
+                        });
+                        print('Se eliminó el producto ${product.title} de favoritos');
                       },
                     ),
                   );
